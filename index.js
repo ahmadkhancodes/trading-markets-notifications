@@ -54,7 +54,7 @@ App.post("/sendnotification", (req, res) => {
       });
       console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
       res.json({
-        status: "Notifications Successfully Sent",
+        status: POST_DATA,
       });
       POST_DATA = [];
       TOKENS_FN = [];
