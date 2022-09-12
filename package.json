@@ -1,0 +1,18 @@
+{
+  "name": "trading-markets-notifications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon start index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase-admin": "^11.0.1",
+    "nodemon": "^2.0.19",
+    "request": "^2.88.2"
+  }
+}
