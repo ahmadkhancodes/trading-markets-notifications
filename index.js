@@ -1,9 +1,9 @@
 var request = require("request");
 // Express Setup
 const express = require("express");
-var cors = require("cors");
+// var cors = require("cors");
 const App = express();
-var PORT = process.env.PORT || 3200;
+var PORT = process.env.PORT || 9002;
 App.listen(PORT);
 
 // Firebase Setup
@@ -48,9 +48,14 @@ App.post("/sendnotification", (req, res) => {
       request.post("https://exp.host/--/api/v2/push/send", {
         json: POST_DATA,
       });
+      console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
       res.json({
         status: "Notifications Successfully Sent",
       });
+      POST_DATA = [];
+      TOKENS_FN = [];
+      TOKENS_ORG = [];
+      console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
     });
 });
 
