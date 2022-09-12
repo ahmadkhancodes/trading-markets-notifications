@@ -1,7 +1,7 @@
 var request = require("request");
 // Express Setup
 const express = require("express");
-// var cors = require("cors");
+var cors = require("cors");
 const App = express();
 var PORT = process.env.PORT || 9002;
 App.listen(PORT);
@@ -17,7 +17,7 @@ admin.initializeApp({
 var db = admin.database();
 
 // Routes & Middlewares
-// App.use(cors());
+App.use(cors());
 App.use(express.json());
 App.post("/sendnotification", (req, res) => {
   const data = req.body;
