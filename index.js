@@ -48,10 +48,22 @@ App.post("/sendnotification", (req, res) => {
           });
         }
       }
-      sa.post("https://exp.host/--/api/v2/push/send")
-        .send(POST_DATA)
-        .then(console.log)
-        .catch(console.error);
+
+      (async () => {
+        try {
+          const res = await sa
+            .post("https://exp.host/--/api/v2/push/send")
+            .send(POST_DATA);
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+
+      // sa.post("https://exp.host/--/api/v2/push/send")
+      //   .send(POST_DATA)
+      //   .then(console.log)
+      //   .catch(console.error);
       //   Sending Notification
       // sa.post("https://exp.host/--/api/v2/push/send")
       //   .send(POST_DATA)
