@@ -1,9 +1,10 @@
 var request = require("request");
 // Express Setup
 const express = require("express");
+var cors = require("cors");
 const App = express();
-var port = process.env.PORT || 3000;
-App.listen(port);
+var PORT = process.env.PORT || 3200;
+App.listen(PORT);
 
 // Firebase Setup
 var admin = require("firebase-admin");
@@ -16,6 +17,7 @@ admin.initializeApp({
 var db = admin.database();
 
 // Routes & Middlewares
+App.use(cors());
 App.use(express.json());
 App.post("/sendnotification", (req, res) => {
   const data = req.body;
