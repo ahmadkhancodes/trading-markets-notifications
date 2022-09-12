@@ -30,14 +30,14 @@ App.post("/sendnotification", (req, res) => {
   var TOKENS_ORG = []; // Can contain duplicate
   var TOKENS_FN = []; // Will not contain duplicate
   var dataSize = 0;
-  db.ref("UserTokens")
+  db.ref("USER_TOKENS")
     .once("value")
     .then(function (snapshot) {
       dataSize = snapshot.numChildren();
       if (dataSize != 0) {
-        TOKENS_ORG = Object.values(snapshot.val());
+        TOKENS_ORG = snapshot.val();
         for (var i = 0; i < TOKENS_ORG.length; i++) {
-          TOKENS_FN.push(TOKENS_ORG[i].token);
+          TOKENS_FN.push(TOKENS_ORG[i]);
         }
         TOKENS_FN = [...new Set(TOKENS_FN)];
         for (var i = 0; i < TOKENS_FN.length; i++) {
@@ -54,9 +54,9 @@ App.post("/sendnotification", (req, res) => {
           const res = await sa
             .post("https://exp.host/--/api/v2/push/send")
             .send(POST_DATA);
-          console.log(res);
+          // console.log(res);
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       })();
 
