@@ -18,6 +18,10 @@ var db = admin.database();
 
 // Routes & Middlewares
 App.use(cors());
+App.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 App.use(express.json());
 App.post("/sendnotification", (req, res) => {
   const data = req.body;
