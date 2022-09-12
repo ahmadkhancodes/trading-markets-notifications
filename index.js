@@ -17,7 +17,7 @@ admin.initializeApp({
 var db = admin.database();
 
 // Routes & Middlewares
-App.use(cors());
+// App.use(cors());
 App.use(express.json());
 App.post("/sendnotification", (req, res) => {
   const data = req.body;
