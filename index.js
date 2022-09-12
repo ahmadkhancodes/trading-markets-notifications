@@ -48,15 +48,18 @@ App.post("/sendnotification", (req, res) => {
           });
         }
       }
-
-      //   Sending Notification
       sa.post("https://exp.host/--/api/v2/push/send")
         .send(POST_DATA)
-        .end(function (err, res) {});
-      // request.post("https://exp.host/--/api/v2/push/send", {
-      //   json: POST_DATA,
-      // });
-      // console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
+        .then(console.log)
+        .catch(console.error);
+      //   Sending Notification
+      // sa.post("https://exp.host/--/api/v2/push/send")
+      //   .send(POST_DATA)
+      //   .end(function (err, res) {});
+      // // request.post("https://exp.host/--/api/v2/push/send", {
+      // //   json: POST_DATA,
+      // // });
+      // // console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
       res.json({
         status: POST_DATA,
       });
