@@ -30,16 +30,15 @@ App.post("/sendnotification", (req, res) => {
   var TOKENS_ORG = []; // Can contain duplicate
   var TOKENS_FN = []; // Will not contain duplicate
   var dataSize = 0;
-  db.ref("USER_TOKENS")
+  db.ref()
     .once("value")
     .then(function (snapshot) {
       dataSize = snapshot.numChildren();
       if (dataSize != 0) {
-        TOKENS_ORG = snapshot.val();
-        for (var i = 0; i < TOKENS_ORG.length; i++) {
-          TOKENS_FN.push(TOKENS_ORG[i]);
+        var TOKEN_KEYS = Object.keys(snapshot.val()).map((key) => key);
+        for (var i = 0; i < TOKEN_KEYS.length; i++) {
+          TOKENS_FN.push("ExponentPushToken[" + TOKEN_KEYS[i] + "]");
         }
-        TOKENS_FN = [...new Set(TOKENS_FN)];
         for (var i = 0; i < TOKENS_FN.length; i++) {
           POST_DATA.push({
             to: TOKENS_FN[i],
@@ -77,8 +76,7 @@ App.post("/sendnotification", (req, res) => {
       });
       POST_DATA = [];
       TOKENS_FN = [];
-      TOKENS_ORG = [];
-      console.log(POST_DATA, TOKENS_FN, TOKENS_ORG);
+      console.log(POST_DATA, TOKENS_FN);
     });
 });
 
